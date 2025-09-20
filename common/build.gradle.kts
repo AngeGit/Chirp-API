@@ -1,12 +1,17 @@
 plugins {
-    kotlin("jvm") version "2.2.0"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.spring)
+    alias(libs.plugins.kotlin.jpa)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency.management)
 }
 
 group = "com.angiedev"
-version = "0.0.1-SNAPSHOT"
+version = "unspecified"
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.spring.io/snapshot") }
 }
 
 dependencies {
