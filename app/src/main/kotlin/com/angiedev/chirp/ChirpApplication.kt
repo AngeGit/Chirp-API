@@ -3,7 +3,7 @@ package com.angiedev.chirp
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+@SpringBootApplication()
 class ChirpApplication
 
 fun main(args: Array<String>) {
