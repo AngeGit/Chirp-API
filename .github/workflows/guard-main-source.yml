@@ -1,0 +1,20 @@
+name: guard-main-source
+
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  only-dev-to-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow only development -> main
+        run: |
+          HEAD="${{ github.head_ref }}"
+          # Permite solo PR cuyo head sea 'development'
+          if [ "$HEAD" != "development" ]; then
+            echo "::error::Solo se permite mergear a 'main' desde 'development'. (head='$HEAD')"
+            exit 1
+          fi
+
