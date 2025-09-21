@@ -7,8 +7,10 @@ version = "0.0.1-SNAPSHOT"
 description = "Chirp App API"
 
 dependencies {
-   implementation(projects.common)
-   implementation(projects.chat)
-   implementation(projects.notification)
-   implementation(projects.user)
+    implementation(projects.common)
+    implementation(projects.chat)
+    implementation(projects.notification)
+    implementation(projects.user)
+    implementation(libs.spring.boot.starter.data.jpa)
+    runtimeOnly(libs.postgresql)
 }
