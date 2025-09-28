@@ -1,4 +1,4 @@
-package com.angiedev.chirp.api.mappers
+package com.angiedev.chirp.api.mapper
 
 import com.angiedev.chirp.api.dto.AuthenticatedUserDTO
 import com.angiedev.chirp.api.dto.UserDTO
