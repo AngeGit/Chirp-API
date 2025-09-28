@@ -1,4 +1,4 @@
-package com.angiedev.user.domain.model
+package com.angiedev.chirp.domain.model
 
 data class AuthenticatedUser(
     val user: User,
