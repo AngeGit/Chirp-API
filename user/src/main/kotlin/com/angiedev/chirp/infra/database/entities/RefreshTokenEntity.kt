@@ -1,5 +1,6 @@
 package com.angiedev.chirp.infra.database.entities
 
+import com.angiedev.chirp.domain.model.UserId
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -19,16 +20,16 @@ import java.time.Instant
         Index(name = "idx_refresh_tokens_user_token", columnList = "user_id, hashed_token"),
     ]
 )
-class RefreshTokenEntity (
+class RefreshTokenEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long = 0,
     @Column(nullable = false)
-    var userId: String,
+    var userId: UserId,
     @Column(nullable = false)
     var expiredAt: Instant,
     @Column(nullable = false)
-    var hashedToken : String,
+    var hashedToken: String,
     @CreationTimestamp
-    var createdAt: Instant
+    var createdAt: Instant = Instant.now()
 )
