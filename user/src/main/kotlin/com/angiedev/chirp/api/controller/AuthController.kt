@@ -1,7 +1,10 @@
 package com.angiedev.chirp.api.controller
 
+import com.angiedev.chirp.api.dto.AuthenticatedUserDTO
+import com.angiedev.chirp.api.dto.LoginRequestDTO
 import com.angiedev.chirp.api.dto.RegisterRequestDTO
 import com.angiedev.chirp.api.dto.UserDTO
+import com.angiedev.chirp.api.mapper.toAuthenticatedUserDTO
 import com.angiedev.chirp.api.mapper.toUserDTO
 import com.angiedev.chirp.service.auth.AuthService
 import jakarta.validation.Valid
@@ -25,4 +28,12 @@ class AuthController(
             username = body.username,
             password = body.password
         ).toUserDTO()
+
+    @PostMapping("/login")
+    fun login(
+        @RequestBody body: LoginRequestDTO
+    ): AuthenticatedUserDTO  = authService.login(
+        email = body.email,
+        password = body.password
+    ).toAuthenticatedUserDTO()
 }

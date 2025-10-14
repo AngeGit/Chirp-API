@@ -1,7 +1,9 @@
 package com.angiedev.chirp.api.exception_handler
 
+import com.angiedev.chirp.domain.exception.InvalidCredentialsException
 import com.angiedev.chirp.domain.exception.InvalidTokenException
 import com.angiedev.chirp.domain.exception.UserAlreadyExistsException
+import com.angiedev.chirp.domain.exception.UserNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
@@ -22,6 +24,7 @@ class AuthExceptionHandler {
     )
 
     @ExceptionHandler(UserAlreadyExistsException::class)
+    @ResponseStatus(HttpStatus.CONFLICT)
     fun onUserAlreadyExists(
         e: UserAlreadyExistsException
     ) = mapOf(
@@ -43,4 +46,23 @@ class AuthExceptionHandler {
         )
         return ResponseEntity(response, HttpStatus.BAD_REQUEST)
     }
+
+    @ExceptionHandler(InvalidCredentialsException::class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    fun onInvalidCredentials(
+        e: InvalidCredentialsException
+    ) = mapOf(
+        "code" to InvalidCredentialsException.CODE,
+        "message" to (e.message)
+    )
+
+    @ExceptionHandler(UserNotFoundException::class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    fun onUserNotFound(
+        e: UserNotFoundException
+    ) = mapOf(
+        "code" to "USER_NOT_FOUND",
+        "message" to (e.message)
+    )
+
 }
